@@ -1,11 +1,23 @@
-import React , {useContext} from 'react';
+import React, {useContext, useRef} from 'react';
 import {NavLink} from "react-router-dom";
 import {FruitContext} from "../../App";
 
 
 function Form (){
+    const fruitRef = useRef(null)
+    const countRef = useRef(null)
+
+    const handleclick = ()=>{
+        const body = {
+            name:fruitRef.current.value,
+            count: Number(countRef.current.value)
+        }
+        console.log(body)
+         dispatch({type:'add', payload:body})
+    }
+
+
     const {state, dispatch} = useContext(FruitContext);
-    console.log(state.fruit)
     // const fruitContext = useContext(FruitContext)
     return(
         <div>
@@ -15,9 +27,12 @@ function Form (){
 
             </div>
 
-            <input type="text"/>
-            <input type="text"/>
-            <button onClick={()=>{dispatch({type:'add', payload:{name:"sdf",count:20}})}}>добавить</button>
+            <input ref={fruitRef} type="text" placeholder='фрукт'/>
+            <input ref={countRef} type="text" placeholder='значение'/>
+            <button onClick={handleclick}>добавить</button>
+
+                 {/*dispatch({type:'add', payload:{name:"sdf",count:20}})}*/}
+
             {JSON.stringify(state.fruit)}
         </div>
     )
