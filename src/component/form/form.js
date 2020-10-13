@@ -1,37 +1,37 @@
 import React, {useContext, useRef} from 'react';
 import {NavLink} from "react-router-dom";
 import {FruitContext} from "../../App";
-
+import './form.css'
 
 function Form (){
     const fruitRef = useRef(null)
     const countRef = useRef(null)
 
-    const handleclick = ()=>{
+    const handleClick = ()=>{
         const body = {
             name:fruitRef.current.value,
             count: Number(countRef.current.value)
         }
-        console.log(body)
          dispatch({type:'add', payload:body})
+        fruitRef.current.value=''
+        countRef.current.value=''
     }
 
-
-    const {state, dispatch} = useContext(FruitContext);
+    const { dispatch} = useContext(FruitContext);
     return(
-        <div>
+        <div className='gtt'>
             <div>
-                <NavLink  to="/piechart" >Pie Chart</NavLink>
-
+                <NavLink className='button1' to="/piechart" >Pie Chart</NavLink>
             </div>
-
-            <input ref={fruitRef} type="text" placeholder='фрукт'/>
-            <input ref={countRef} type="number" min={0} placeholder='значение'/>
-            <button onClick={handleclick}>добавить</button>
-
-            {JSON.stringify(state.fruit)}
-        </div>
+            <h3 className='infoappl'>Введіть дані:</h3>
+            <div>
+                <input className='nameAppl' ref={fruitRef} type="text" placeholder='фрукт'/>
+            </div>
+            <div>
+                <input className='nameAppl' ref={countRef} type="number" min={0} placeholder='значение'/>
+            </div>
+            <button className='button' onClick={handleClick}>Добавити</button>
+       </div>
     )
-
 }
 export default Form

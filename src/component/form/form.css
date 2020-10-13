@@ -1,0 +1,58 @@
+.infoappl{
+    font-style: normal;
+    font-weight: bold;
+    font-size: 24px;
+    line-height: 36px;
+}
+.nameAppl{
+    margin-top: 40px;
+    width: 500px;
+    height: 60px;
+    margin-bottom: 20px;
+
+    border: none;
+    outline: none;
+    padding: 1px 40px;
+    background: #FFFFFF;
+    box-shadow: 0 10px 20px rgba(57, 67, 77, 0.8);
+    border-radius: 30px;
+}
+
+.button{
+    margin-top: 50px;
+    background: #008DDD;
+    box-shadow: 0 10px 20px rgba(0, 179, 239, 0.3);
+    border-radius: 30px;
+    width: 500px;
+    height: 60px;
+    border: none;
+    outline: none;
+    text-align: center;
+    color: white;
+    font-size: 16px;
+    font-weight: 700;
+
+}
+
+.gtt{
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+    width:560px;
+
+}
+
+.button1{
+    margin-top: 50px;
+    background: #008DDD;
+    width: 500px;
+    height: 60px;
+    border: none;
+    outline: none;
+    color: white;
+    font-size: 16px;
+
+}

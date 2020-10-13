@@ -26,11 +26,9 @@ const PieChart = ()=>{
          const elem = idRef.current;
          const {pageY, pageX} = e;
          elem.innerHTML = title;
-
-     idRef.current.style.position = "absolute"
-     idRef.current.style.top = `${pageY-20}px`;
-     idRef.current.style.left = `${pageX}px`;
-
+         idRef.current.style.position = "absolute"
+         idRef.current.style.top = `${pageY-20}px`;
+         idRef.current.style.left = `${pageX}px`;
  }
     return (
         <div >
