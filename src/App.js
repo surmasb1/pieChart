@@ -6,25 +6,38 @@ import Form from "./component/form/form";
 
 export const FruitContext = React.createContext()
 
-const initialState = [{fruit:[],}]
-const reducer = (state, action) => {
-    switch (action){
-        case 'add':
-            return {
-                ...state,
-                fruit:[{d:'dfg'},{d:'dfg'},{d:'dfg'}]
+const initialState ={
+    fruit: [{
+                name:'apple',
+                count:6
+            },
+            {
+                name:'orange',
+                count:3
+            },
+            {
+                name:'lemon',
+                count:3
             }
-
+            ]
+}
+const reducer = (state, action) => {
+    switch (action.type){
+        case 'add':
+            return{
+                state,
+               fruit:[...state.fruit, action.payload]
+            }
             default:
             return state;
     }
 }
 
 function App() {
-    const [fruit, dispatch] = useReducer(reducer,initialState)
+    const [state, dispatch] = useReducer(reducer,initialState)
     return (
         <FruitContext.Provider
-        value={{fruitState: fruit, fruitDispatch: dispatch}}
+        value={{state,  dispatch}}
         >
             <BrowserRouter>
 
@@ -37,6 +50,7 @@ function App() {
 
 
     )
+
   //   const fruit = [
   //       {
   //           name:'apple',

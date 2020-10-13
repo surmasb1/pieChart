@@ -4,10 +4,12 @@ import {FruitContext} from "../../App";
 
 
 function Form (){
-    const fruitContext = useContext(FruitContext)
+    const {state, dispatch} = useContext(FruitContext);
+    console.log(state.fruit)
+    // const fruitContext = useContext(FruitContext)
     return(
         <div>
-            <div>{fruitContext.fruitState}</div>
+            {/*<div>{state.fruit}</div>*/}
             <div>
                 <NavLink  to="/piechart" >Pie Chart</NavLink>
 
@@ -15,7 +17,8 @@ function Form (){
 
             <input type="text"/>
             <input type="text"/>
-            <button onClick={()=>fruitContext.fruitDispatch('add')}>добавить</button>
+            <button onClick={()=>{dispatch({type:'add', payload:{name:"sdf",count:20}})}}>добавить</button>
+            {JSON.stringify(state.fruit)}
         </div>
     )
 

@@ -1,34 +1,38 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import {NavLink} from "react-router-dom";
+import {FruitContext} from "../../App";
 
 
 const PieChart = ()=>{
-    const fruit = [
-        {
-            name:'apple',
-            count:16
-        },
-        {
-            name:'orange',
-            count:2
-        },
-        {
-            name:'limon',
-            count:3
-        },
-        {
-            name:'bananna',
-            count:4
-        },
-        {
-            name:'fgfg',
-            count:5
-        },
-        {
-            name:'fgftgg',
-            count:1
-        }
-    ];
+
+    const {state, dispatch} = useContext(FruitContext);
+const {fruit} = state
+    // const fruit = [
+    //     {
+    //         name:'apple',
+    //         count:16
+    //     },
+    //     {
+    //         name:'orange',
+    //         count:30
+    //     },
+    //     {
+    //         name:'limon',
+    //         count:3
+    //     },
+    //     {
+    //         name:'bananna',
+    //         count:4
+    //     },
+    //     {
+    //         name:'fgfg',
+    //         count:5
+    //     },
+    //     {
+    //         name:'fgftgg',
+    //         count:1
+    //     }
+    // ];
     let totalcount = fruit.reduce((accamval,currentval)=> accamval+currentval.count,0);
 
     let arr= [];
@@ -56,7 +60,7 @@ const PieChart = ()=>{
                             let dd= `M0,0 ${index === 0 ? start : "L"+arr[index-1].x+","+arr[index-1].y } A100,100 0 ${fruit[index].count/totalcount >= 0.5 ? 1: 0 },1 ${curentxy} Z`
                             let colorel = `rgb(${255 * Math.random()}, ${255 * Math.random()},${255 * Math.random()})`
                             return(
-                                <path key={index} d={dd} fill={colorel} fillOpacity='0.7'/>
+                                <path key={index} d={dd} fill={colorel} fillOpacity='0.7' title={fruit[index].name}/>
                             )
                         })}
 
