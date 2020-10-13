@@ -4,10 +4,8 @@ import {FruitContext} from "../../App";
 import '../form/form.css'
 
 const PieChart = ()=>{
-
     const {state} = useContext(FruitContext);
     const {fruit} = state
-
     let totalCount = fruit.reduce((accamval,currentval)=> accamval+currentval.count,0);
     let idRef= useRef(null)
 
