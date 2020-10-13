@@ -6,34 +6,9 @@ import {FruitContext} from "../../App";
 const PieChart = ()=>{
 
     const {state} = useContext(FruitContext);
-const {fruit} = state
-    // const fruit = [
-    //     {
-    //         name:'apple',
-    //         count:16
-    //     },
-    //     {
-    //         name:'orange',
-    //         count:30
-    //     },
-    //     {
-    //         name:'limon',
-    //         count:3
-    //     },
-    //     {
-    //         name:'bananna',
-    //         count:4
-    //     },
-    //     {
-    //         name:'fgfg',
-    //         count:5
-    //     },
-    //     {
-    //         name:'fgftgg',
-    //         count:1
-    //     }
-    // ];
-    let totalcount = fruit.reduce((accamval,currentval)=> accamval+currentval.count,0);
+    const {fruit} = state
+
+    let totalCount = fruit.reduce((accamval,currentval)=> accamval+currentval.count,0);
     let idRef= useRef(null)
 
     let arr= [];
@@ -41,23 +16,18 @@ const {fruit} = state
     fruit.forEach((elem)=>{
         camul = elem.count+camul;
         let alpha = {
-            x: Math.cos(2 * Math.PI * (camul/totalcount))*100,
-            y: Math.sin(2 * Math.PI * (camul/totalcount))*100,
+            x: Math.cos(2 * Math.PI * (camul/totalCount))*100,
+            y: Math.sin(2 * Math.PI * (camul/totalCount))*100,
         }
         arr.push(alpha)
     })
-    // const hideTooltip = ()=>{
-    //     const elem = idRef.current;
-    //     elem.innerHTML = ''
-    //
-    // }
+
  const showName = (e,title)=>{
          const elem = idRef.current;
          const {pageY, pageX} = e;
          elem.innerHTML = title;
 
      idRef.current.style.position = "absolute"
-     // idRef.current.style.display = "block"
      idRef.current.style.top = `${pageY-20}px`;
      idRef.current.style.left = `${pageX}px`;
 
@@ -75,7 +45,7 @@ const {fruit} = state
                         {arr.map((n , index)=>{
                             let start = `L100,0`;
                             let curentxy = index +1 === arr.length ?`100,0` : `${n.x},${n.y}`
-                            let dd= `M0,0 ${index === 0 ? start : "L"+arr[index-1].x+","+arr[index-1].y } A100,100 0 ${fruit[index].count/totalcount >= 0.5 ? 1: 0 },1 ${curentxy} Z`
+                            let dd= `M0,0 ${index === 0 ? start : "L"+arr[index-1].x+","+arr[index-1].y } A100,100 0 ${fruit[index].count/totalCount >= 0.5 ? 1: 0 },1 ${curentxy} Z`
                             let colorel = `rgb(${255 * Math.random()}, ${255 * Math.random()},${255 * Math.random()})`
                             return(
                                 <path key={index} d={dd} fill={colorel} fillOpacity='0.7'  onMouseOver={(event)=>{

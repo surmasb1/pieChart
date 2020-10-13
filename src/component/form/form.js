@@ -18,20 +18,16 @@ function Form (){
 
 
     const {state, dispatch} = useContext(FruitContext);
-    // const fruitContext = useContext(FruitContext)
     return(
         <div>
-            {/*<div>{state.fruit}</div>*/}
             <div>
                 <NavLink  to="/piechart" >Pie Chart</NavLink>
 
             </div>
 
             <input ref={fruitRef} type="text" placeholder='фрукт'/>
-            <input ref={countRef} type="text" placeholder='значение'/>
+            <input ref={countRef} type="number" min={0} placeholder='значение'/>
             <button onClick={handleclick}>добавить</button>
-
-                 {/*dispatch({type:'add', payload:{name:"sdf",count:20}})}*/}
 
             {JSON.stringify(state.fruit)}
         </div>
