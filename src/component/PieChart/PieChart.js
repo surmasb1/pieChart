@@ -1,7 +1,7 @@
 import React, {useContext, useRef} from 'react';
 import {NavLink} from "react-router-dom";
 import {FruitContext} from "../../App";
-
+import '../form/form.css'
 
 const PieChart = ()=>{
 
@@ -31,9 +31,9 @@ const PieChart = ()=>{
          idRef.current.style.left = `${pageX}px`;
  }
     return (
-        <div >
+        <div className='gtt' >
             <div>
-                <NavLink  to={'/'}>Form</NavLink>
+                <NavLink className='button1' to={'/'}>Form</NavLink>
             </div>
             <div  ref={idRef}/>
             <div>
