@@ -46,15 +46,18 @@ const {fruit} = state
         }
         arr.push(alpha)
     })
+    const hideTooltip = ()=>{
+        const elem = idRef.current;
+        idRef.current.style.position = "none"
+
+    }
  const showName = (e,title)=>{
          const elem = idRef.current;
          const {pageY, pageX} = e;
          elem.innerHTML = title;
-         elem.style.display = "absolute"
-         elem.style.top = pageY-20;
-         elem.style.left = pageX;
-        elem.setStyle
-         console.log(elem.style)
+     idRef.current.style.position = "absolute"
+     idRef.current.style.top = `${pageY-20}px`;
+     idRef.current.style.left = `${pageX}px`;
 
  }
     return (
@@ -62,8 +65,9 @@ const {fruit} = state
             <div>
                 <NavLink  to={'/'}>Form</NavLink>
             </div>
+            <div  ref={idRef}/>
             <div>
-                <div ref={idRef}/>
+
                 <svg height="600" width="600"  viewBox="-100 -100 200 200">
                     <g transform="rotate(-90)">
                         {arr.map((n , index)=>{
@@ -72,7 +76,7 @@ const {fruit} = state
                             let dd= `M0,0 ${index === 0 ? start : "L"+arr[index-1].x+","+arr[index-1].y } A100,100 0 ${fruit[index].count/totalcount >= 0.5 ? 1: 0 },1 ${curentxy} Z`
                             let colorel = `rgb(${255 * Math.random()}, ${255 * Math.random()},${255 * Math.random()})`
                             return(
-                                <path key={index} d={dd} fill={colorel} fillOpacity='0.7'  onMouseOver={(event)=>{
+                                <path key={index} d={dd} fill={colorel} fillOpacity='0.7' onMouseOut={hideTooltip} onMouseOver={(event)=>{
 
                                     showName(event,fruit[index].name)
                                 }}/>
