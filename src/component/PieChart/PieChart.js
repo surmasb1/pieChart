@@ -8,7 +8,6 @@ const PieChart = ()=>{
     const {fruit} = state
     let totalCount = fruit.reduce((accamval,currentval)=> accamval+currentval.count,0);
     let idRef= useRef(null)
-
     let arr= [];
     let camul =0;
     fruit.forEach((elem)=>{
@@ -24,6 +23,7 @@ const PieChart = ()=>{
          const elem = idRef.current;
          const {pageY, pageX} = e;
          elem.innerHTML = title;
+     idRef.current.style.display = 'block'
          idRef.current.style.position = "absolute"
          idRef.current.style.top = `${pageY-20}px`;
          idRef.current.style.left = `${pageX}px`;
@@ -35,7 +35,6 @@ const PieChart = ()=>{
             </div>
             <div  ref={idRef}/>
             <div>
-
                 <svg height="600" width="600"  viewBox="-100 -100 200 200">
                     <g  transform="rotate(-90)">
                         {arr.map((n , index)=>{
@@ -44,20 +43,15 @@ const PieChart = ()=>{
                             let dd= `M0,0 ${index === 0 ? start : "L"+arr[index-1].x+","+arr[index-1].y } A100,100 0 ${fruit[index].count/totalCount >= 0.5 ? 1: 0 },1 ${curentxy} Z`
                             let colorel = `rgb(${255 * Math.random()}, ${255 * Math.random()},${255 * Math.random()})`
                             return(
-                                <path key={index} d={dd} fill={colorel} fillOpacity='0.7'  onMouseOver={(event)=>{
-
+                                <path key={index} d={dd} fill={colorel} fillOpacity='0.7'
+                                      onMouseMove={(event)=>{
                                     showName(event,fruit[index].name)
                                 }}/>
                             )
                         })}
-
-
                     </g>
                 </svg>
             </div>
-
-
-
         </div>
     );
 }

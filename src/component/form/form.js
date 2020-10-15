@@ -6,7 +6,6 @@ import './form.css'
 function Form (){
     const fruitRef = useRef(null)
     const countRef = useRef(null)
-
     const handleClick = ()=>{
         const body = {
             name:fruitRef.current.value,
