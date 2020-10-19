@@ -19,9 +19,10 @@ function Form (){
     const { dispatch} = useContext(FruitContext);
     return(
         <div className='gtt'>
-            <div>
-                <NavLink className='button1' to="/piechart" >Pie Chart</NavLink>
+            <div className='divPie'>
+                <NavLink className='button1' to="/piechart" >click here to Pie Chart page</NavLink>
             </div>
+
             <h3 className='infoappl'>Введіть дані:</h3>
             <div>
                 <input className='nameAppl' ref={fruitRef} type="text" placeholder='фрукт'/>

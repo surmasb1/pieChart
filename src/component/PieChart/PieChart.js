@@ -19,10 +19,10 @@ const PieChart = ()=>{
         arr.push(alpha)
     })
 
- const showName = (e,title)=>{
+ const showName = (e,title,proc)=>{
          const elem = idRef.current;
          const {pageY, pageX} = e;
-         elem.innerHTML = title;
+         elem.innerHTML = title+' - '+ proc.toFixed(2) + '%';
      idRef.current.style.display = 'block'
          idRef.current.style.position = "absolute"
          idRef.current.style.top = `${pageY-20}px`;
@@ -30,22 +30,22 @@ const PieChart = ()=>{
  }
     return (
         <div className='gtt' >
-            <div>
-                <NavLink className='button1' to={'/'}>Form</NavLink>
+            <div className='divPie'>
+                <NavLink className='button1' to={'/'}>click here to Form page</NavLink>
             </div>
             <div  ref={idRef}/>
             <div>
                 <svg height="600" width="600"  viewBox="-100 -100 200 200">
-                    <g  transform="rotate(-90)">
+                    <g className='piechart' transform="rotate(-90)">
                         {arr.map((n , index)=>{
                             let start = `L100,0`;
                             let curentxy = index +1 === arr.length ?`100,0` : `${n.x},${n.y}`
                             let dd= `M0,0 ${index === 0 ? start : "L"+arr[index-1].x+","+arr[index-1].y } A100,100 0 ${fruit[index].count/totalCount >= 0.5 ? 1: 0 },1 ${curentxy} Z`
                             let colorel = `rgb(${255 * Math.random()}, ${255 * Math.random()},${255 * Math.random()})`
                             return(
-                                <path key={index} d={dd} fill={colorel} fillOpacity='0.7'
+                                <path  key={index} d={dd} fill={colorel} fillOpacity='0.7'
                                       onMouseMove={(event)=>{
-                                    showName(event,fruit[index].name)
+                                    showName(event,fruit[index].name,fruit[index].count/totalCount*100)
                                 }}/>
                             )
                         })}
